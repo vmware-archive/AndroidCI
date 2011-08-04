@@ -1,12 +1,16 @@
-Android CI
-This represents ~/.jenkins dir.
+# Android CI
+This project's purpose is to bootstrap Android continuous integration using 
+Jenkins-CI (http://jenkins-ci.org/). This project is a stripped-down version of Jenkin's 
+configuration directory, which is `~/.jenkins` by default. 
 
 ## Assumptions
 We make the following assumptions. Feel free to deviate but you will likely need to fix some 
 things as you go.
 
 - You are working on a Mac
-- Your android SDK is in ~/android-sdk-mac_x86, or you are going to put it there, or create a symlink, etc.
+- Your android SDK is in ~/android-sdk-mac_x86, or you are going to put it there, 
+or create a symlink, etc.
+- A 
 
 ## Android
 Download the latest Mac SDK: http://developer.android.com/sdk/index.html
@@ -34,11 +38,10 @@ Note: This project assumes you have SDK Platform Android 2.1 installed. You can 
 
 
 ## Bootstrap 
-clone this project
-cd project
 
-   ln -s $PWD ~/.jenkins
-
+    git@pivotal:pivotal/AndroidCi.git
+    cd AndroidCi
+    ln -s $PWD ~/.jenkins
 
 
 ## Jenkins

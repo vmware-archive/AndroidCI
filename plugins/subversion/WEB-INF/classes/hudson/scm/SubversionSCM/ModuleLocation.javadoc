@@ -1,3 +1,0 @@
-#Wed Jun 15 18:26:16 PDT 2011
-local=\ Remembers the user-given value.\n Can be null.\n\n @deprecated\n      Code should use {@link \#getLocalDir()}. This field is only intended for form binding.\n
-remote=\ Subversion URL to check out.\n\n This may include "@NNN" at the end to indicate a fixed revision.\n

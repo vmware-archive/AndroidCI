@@ -12,6 +12,9 @@ jobs/AndroidIntelliJStarter/scm-polling.log
 jobs/AndroidIntelliJStarter/workspace/
 
 nodeMonitors.xml
+
+plugins/cvs*
+queue.xml
 queue.xml.bak
 secret.key
 updates/

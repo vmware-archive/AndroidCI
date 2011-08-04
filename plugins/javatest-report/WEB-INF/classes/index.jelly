@@ -1,4 +1,0 @@
-<div>
-  This plugin parses XML result file from JavaTest, a framework used by TCKs released from Sun,
-  and show them as test results.
-</div>

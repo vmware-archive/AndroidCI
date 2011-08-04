@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: kohsuke
+Build-Jdk: 1.6.0_24
+Extension-Name: ssh-slaves
+Implementation-Title: ssh-slaves
+Implementation-Version: 0.17
+Plugin-Class: hudson.plugins.sshslaves.PluginImpl
+Group-Id: org.jenkins-ci.plugins
+Short-Name: ssh-slaves
+Long-Name: Jenkins SSH Slaves plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/SSH+Slaves+plugin
+Plugin-Version: 0.17
+Hudson-Version: 1.403
+Jenkins-Version: 1.403
+Plugin-Developers: Stephen Connolly:stephenconnolly:,Kohsuke Kawaguchi
+ :kohsuke:,Olivier Lamy:olamy:
+

@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jvnet.hudson.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.318</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ruby</artifactId>
+    <packaging>hpi</packaging>
+    <version>1.2</version>
+    <name>Hudson Ruby Plugin</name>
+    <url>http://wiki.hudson-ci.org/display/HUDSON/Ruby+Plugin</url>
+
+    <developers>
+      <developer>
+        <id>vivekp</id>
+        <name>Vivek Pandey</name>
+      </developer>
+    </developers>
+
+  <scm>
+    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/ruby-1.2</connection>
+    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/ruby-1.2</developerConnection>
+    <url>https://hudson.dev.java.net/source/browse/hudson/tags/ruby-1.2</url>
+  </scm>
+</project>

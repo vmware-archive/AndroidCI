@@ -1,0 +1,35 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+
+	<j:invoke var="rows" on="${from}" method="toRows">
+		<j:arg type="java.util.Collection" value="${projects.getJobs()}" />
+		<j:arg type="java.lang.Boolean" value="true" />
+	</j:invoke>
+
+	<!--  how much space to allocate for failed and passing jobs. -->
+	<!-- render the failing jobs... -->
+		<j:set var="jobFont" value="xx-large" />
+		<j:set var="failFont" value="xx-large" />
+		<j:set var="infoFont" value="medium" />
+		<j:set var="buildFont" value="medium" />
+		<j:set var="iconSize" value="48x48" />	
+		
+		<j:set var="height" value="${(100 / rows.size())}" />
+		<j:set var="top" value="0" />
+		
+		<j:forEach var="row" items="${rows}">
+			<j:set var="width" value="${(100 / row.size())}" />
+			<j:set var="left" value="0" />
+			<j:forEach var="job" items="${row}">
+				<j:set var="jobStyle"
+					value="left: ${left}%; top:${top}%; width:${width-2}%; height:${height-2}%; margin:1%; " />
+					
+				<st:include page="project.jelly" />
+				
+				<j:set var="left" value="${left + width}" />
+			</j:forEach>
+			<j:set var="top" value="${top + height}" />
+		</j:forEach>
+
+</j:jelly>

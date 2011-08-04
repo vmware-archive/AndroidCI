@@ -1,0 +1,233 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+	<meta http-equiv="refresh" content="${from.refresh}" />
+	<style type="text/css">
+		#header{
+		display:none;
+		}
+		#side-panel{
+		display:none;
+		}
+		#view-message{
+		display:none;
+		}
+		#main-panel{
+		padding: 0px;
+		}
+
+		#job
+		{
+		position:
+		absolute;
+		overflow: hidden;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-border-radius: 10px;
+		}
+
+		ul.config li.config
+		{
+		display: block;
+		width: auto;
+		height: 16px;
+		overflow: hidden;
+		}
+
+		ul.config
+		li.config:hover {
+		height: auto;
+		width: 150px;
+		overflow: visible;
+		background-color:#ddd;
+		-webkit-border-bottom-left-radius: 10px;
+		-moz-border-radius-bottomleft: 10px;
+		border-bottom-left-radius: 10px;
+		border: solid black 1px;
+		padding-left:10px;
+		padding-bottom:10px;
+		}
+
+		div.config
+		{
+		position:absolute;
+		right:0; top:0;
+		z-index:999;
+		}
+
+		.building
+		{
+		opacity:
+		0.6; -moz-opacity:0.6; -webkit-opacity:0.6;
+		filter:alpha(opacity=60);
+		}
+
+		ul.menu li.menu
+		{
+		display: block;
+		width: auto;
+		height: 40px;
+		overflow: hidden;
+		}
+
+		ul.menu
+		li.menu:hover {
+		height: 90%;
+		width: auto;
+		overflow: auto;
+		background-color:#ddd;
+
+		background: rgb(240, 240, 240) transparent;
+		background: rgba(240, 240, 240, 0.6);
+		/* For IE 5.5 - 7*/
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd00,
+		endColorstr=#dddddd00);
+		/* For IE 8*/
+		-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd00,
+		endColorstr=#dddddd00)";
+
+
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		border: solid black
+		1px;
+		padding-right:10px;
+		padding-bottom:10px;
+		}
+
+		a.nolink {
+		text-decoration: none;
+		}
+
+		a:hover {
+		position: relative;
+		}
+
+		a span {
+		display: none;
+		}
+
+		a:hover span {
+		display: block;
+		position: absolute; top: 10px; left: 0;
+		/* formatting only styles */
+		padding: 5px; margin: 10px; z-index: 100;
+		background: #f0f0f0; border: 1px dotted #c0c0c0;
+		opacity: 0.9;
+		/* end formatting */
+		}
+
+		.job {
+		-webkit-box-shadow:inset 0 0 10px #000000;
+		box-shadow:inset 0 0 10px #000000;
+		}
+
+		.jobtitle {
+		font-weight:bold; text-shadow: 1px 1px 1px #000;
+		}
+
+		.failing {
+		background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.19, rgb(193,63,63)),
+		color-stop(0.6, rgb(235,26,36))
+		);
+		background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(193,63,63) 19%,
+		rgb(235,26,36) 60%
+		);
+		}
+
+		.successful {
+		background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.05, rgb(64,122,75)),
+		color-stop(0.53, rgb(0,138,44))
+		);
+		background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(64,122,75) 5%,
+		rgb(0,138,44) 53%
+		);
+		}
+
+		.claimed {
+		background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.25, rgb(196,172,53)),
+		color-stop(0.82, rgb(240,172,0))
+		);
+		background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(196,172,53) 25%,
+		rgb(240,172,0) 82%
+		);
+		}
+
+
+	</style>
+	<j:choose>
+		<j:when test="${empty(items)}">
+			<st:include page="noJob.jelly" />
+		</j:when>
+		<j:otherwise>
+			<t:setIconSize />
+			<!-- config option: dark or light backgrounds. -->
+			<j:set var="dashStyle"
+				value="background-color: white; background-image: url(${rootURL}/static/0360aadc/images/hudson.png); background-repeat: no-repeat; background-position: left bottom;" />
+			<j:if test="${from.getHighVis()}">
+				<j:set var="dashStyle" value="background-color: black;" />
+			</j:if>
+			<!-- outer div to hide everything in the normal layout. -->
+			<div class="dashboard"
+				style="${dashStyle} overflow: hidden; left:
+				0px; top: 0px; position: absolute; height: 100%; width: 100%; ">
+
+				<div class="config">
+					<ul class="config" style="margin:0; padding:0;">
+						<li class="config">
+							<p align="right" style="margin:0; padding:0;">
+								<img src="${rootURL}/images/16x16/help.png" />
+							</p>
+							<h2>Radiator View</h2>
+							<ul>
+								<li>
+									<a href="configure">Configure View</a>
+								</li>
+								<li>
+									<a href="delete">Delete View</a>
+								</li>
+								<li>
+									<a href="../../">Jenkins Home</a>
+								</li>
+								<li>
+									<a
+										href="https://wiki.jenkins-ci.org/display/JENKINS/Radiator+View+Plugin">About</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<j:if test="${from.getGroupByPrefix()}">
+					<j:invoke var="projects" on="${from}" method="getContentsByPrefix" />
+					<st:include page="projects.jelly" />
+				</j:if>
+				<j:if test="${!from.getGroupByPrefix()}">
+					<j:invoke var="contents" on="${from}" method="getContents" />
+					<st:include page="jobs.jelly" />
+				</j:if>
+
+			</div>
+		</j:otherwise>
+	</j:choose>
+</j:jelly>

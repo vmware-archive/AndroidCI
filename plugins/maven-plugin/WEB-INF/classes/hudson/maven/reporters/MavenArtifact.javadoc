@@ -1,0 +1,9 @@
+#Mon Aug 01 11:07:13 PDT 2011
+version=\ Basic parameters of a Maven artifact.\n
+groupId=\ Basic parameters of a Maven artifact.\n
+type=\ Basic parameters of a Maven artifact.\n
+canonicalName=\ The canonical artifact file name, used by Maven in the repository.\n This is <tt>artifactId-version[-classifier].extension</tt>.\n\n <p>\n The reason we persist this is that the extension is only available\n through {@link ArtifactHandler}. \n
+classifier=\ Basic parameters of a Maven artifact.\n
+md5sum=\ The md5sum for this artifact.\n
+fileName=\ File name (without directory portion) of this artifact in the Hudson archive.\n Remembered explicitly because some times this doesn't follow the\n standard naming convention, due to &lt;finalName> setting in POM.\n\n <p>\n This name is taken directly from the name of the file as used during the build\n (thus POM would be most likely just <tt>pom.xml</tt> and artifacts would\n use their <tt>finalName</tt> if one is configured.) This is often\n different from {@link \#canonicalName}.\n
+artifactId=\ Basic parameters of a Maven artifact.\n

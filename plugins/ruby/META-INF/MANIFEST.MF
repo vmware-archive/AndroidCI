@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: aruna
+Build-Jdk: 1.6.0_17
+Extension-Name: ruby
+Implementation-Title: ruby
+Implementation-Version: 1.2
+Short-Name: ruby
+Long-Name: Hudson Ruby Plugin
+Url: http://wiki.hudson-ci.org/display/HUDSON/Ruby+Plugin
+Plugin-Version: 1.2
+Hudson-Version: 1.318
+Plugin-Developers: Vivek Pandey:vivekp:
+

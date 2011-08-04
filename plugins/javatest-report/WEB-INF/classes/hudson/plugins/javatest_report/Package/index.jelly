@@ -1,0 +1,83 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:test="/lib/test">
+  <l:layout>
+    <st:include it="${it.owner}" page="sidepanel.jelly" />
+    <l:main-panel>
+      <h1>${it.displayName}</h1>
+
+      <div style="margin-top: 1em; margin-bottom: 1em;">
+        ${it.description}
+      </div>
+
+      <j:set var="prev" value="${it.previousResult}" />
+      <test:bar />
+      <j:if test="${it.failCount!=0}">
+          <h2>Failed Tests</h2>
+          <table class="pane sortable">
+            <tr>
+              <td class="pane-header">Test Name</td>
+              <td class="pane-header" style="width:6em">Status</td>
+              <td class="pane-header" style="width:4em">Age</td>
+            </tr>
+            <j:forEach var="f" items="${it.failedTests}" varStatus="i">
+              <j:set var="childCount" value="${f.children.size()}"/>
+              <tr>
+                <j:if test="${childCount==0}">
+                    <j:set var="foo" value="../../../../artifact/java-test-work/${f.statusMessage}"/>
+  					<td class="pane"><a href="${foo}">${f.displayName}</a></td>
+                </j:if>
+                <j:if test="${childCount !=0}">
+                    <td class="pane"><a href="${f.id}/">${f.displayName}</a></td>
+                </j:if>
+                <td class="pane">${f.status}</td>
+                <td class="pane" style="text-align:right;">
+                  ${f.age}
+                </td>
+              </tr>
+            </j:forEach>
+          </table>
+        </j:if>
+        
+      <j:if test="${it.totalCount!=0}">
+        <h2>Tests</h2>
+        <table class="pane sortable" id="testresult">
+          <tr>
+            <td class="pane-header">${it.childTitle}</td>
+            <td class="pane-header" style="width:5em">Fail</td>
+            <td class="pane-header" style="width:1em; font-size:smaller; white-space:nowrap;">(diff)</td>
+            <td class="pane-header" style="width:5em">Age</td>
+            <td class="pane-header" style="width:5em">Total</td>
+            <td class="pane-header" style="width:1em; font-size:smaller; white-space:nowrap;">(diff)</td>
+          </tr>
+          <tbody>
+            <j:forEach var="p" items="${it.children}">
+              <j:set var="prev" value="${p.previousResult}" />
+              <j:set var="childCount" value="${p.children.size()}"/>
+              <j:if test="${!p.status.toString().equals('SKIP')}">
+              <tr>
+                <j:if test="${childCount==0}">
+                    <j:set var="foo" value="../../../../artifact/java-test-work/${p.statusMessage}"/>
+                    <td class="pane"><a href="${foo}">${p.displayName}</a></td>
+                </j:if>
+                <j:if test="${childCount !=0}">
+                    <td class="pane"><a href="${p.id}/">${p.displayName}</a></td>
+                </j:if>
+                <td class="pane" style="text-align:right">${p.failCount}</td>
+                <td class="pane" style="text-align:right">
+                  ${h.getDiffString2(p.failCount-prev.failCount)}
+                </td>
+                <td class="pane" style="text-align:right;">
+                    ${p.age}
+                </td>                
+                <td class="pane" style="text-align:right">${p.totalCount}</td>
+                <td class="pane" style="text-align:right">
+                  ${h.getDiffString2(p.totalCount-prev.totalCount)}
+                </td>
+              </tr>
+              </j:if>
+            </j:forEach>
+          </tbody>
+        </table>
+        </j:if>
+    </l:main-panel>
+  </l:layout>
+</j:jelly>

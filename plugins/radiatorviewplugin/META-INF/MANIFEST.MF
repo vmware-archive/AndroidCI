@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: markh
+Build-Jdk: 1.6.0_24
+Extension-Name: radiatorviewplugin
+Specification-Title: Adds a new high visibility view of project status.
+Implementation-Title: radiatorviewplugin
+Implementation-Version: 1.13
+Group-Id: org.jenkins-ci.plugins
+Short-Name: radiatorviewplugin
+Long-Name: Radiator View Plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/Radiator+View+Plugin
+Plugin-Version: 1.13
+Hudson-Version: 1.400
+Plugin-Dependencies: claim:1.7;resolution:=optional
+Plugin-Developers: Mark Howard:howama:mh@tildemh.com
+

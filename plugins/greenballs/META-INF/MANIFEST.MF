@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ANilsen
+Build-Jdk: 1.6.0_23
+Extension-Name: greenballs
+Specification-Title: Because green balls are better than blue
+Implementation-Title: greenballs
+Implementation-Version: 1.10
+Plugin-Class: hudson.plugins.greenballs.PluginImpl
+Group-Id: org.jvnet.hudson.plugins
+Short-Name: greenballs
+Long-Name: Green Balls
+Url: http://wiki.hudson-ci.org/display/HUDSON/Green+Balls
+Plugin-Version: 1.10
+Hudson-Version: 1.392
+Plugin-Developers: Asgeir Storesund Nilsen:asgeirn:asgeir@twingine.no
+

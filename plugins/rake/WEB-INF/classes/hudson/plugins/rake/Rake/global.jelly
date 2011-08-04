@@ -1,0 +1,33 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:section title="Rake">
+    <f:entry title="Rvm installation path">
+        <f:textbox name="rvm.path" value="${instance.rvm.path}" />
+    </f:entry>
+  
+    <f:entry title="Ruby installation"
+      description="List of Rake installations on this system">
+     
+       
+      <f:repeatable var="rake" items="${descriptor.installations}">
+        <j:if test="${rake.gemHome == null}">
+            <table width="100%">
+              <f:entry title="name">
+                <f:textbox name="rake.name" value="${rake.name}" />
+              </f:entry>
+    
+              <f:entry title="RUBY_HOME">
+                <f:textbox name="rake.path" value="${rake.path}"
+                  checkUrl="'builder/Rake/checkRubyInstallation?value='+escape(this.value)" />
+              </f:entry>
+              
+              <f:entry title="">
+                <div align="right">
+                  <f:repeatableDeleteButton />
+                </div>
+              </f:entry>
+            </table>
+        </j:if>
+      </f:repeatable>
+    </f:entry>
+  </f:section>
+</j:jelly>

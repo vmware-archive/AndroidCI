@@ -1,0 +1,30 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+   
+   	<f:entry title="Rake Version">
+	    <select class="setting-input" name="rake.rakeInstallation">
+	      <option>(Default)</option>
+	      <j:forEach var="inst" items="${descriptor.installations}">
+	        <f:option selected="${inst.name == instance.rakeInstallation}">${inst.name}</f:option>
+	      </j:forEach>
+	    </select>
+  </f:entry>
+   	        
+    <f:entry title="Tasks" description=" Specify Rake task(s) to run.">
+    	<f:expandableTextbox name="rake.tasks" value="${instance.tasks}" />
+  	</f:entry>
+  	<f:advanced>
+  	    <f:entry title="Rake file" description="Specify the rake file path, by default it's './Rakefile'">
+          <f:textbox name="rake.rakeFile" value="${instance.rakeFile}"/>
+        </f:entry>
+    	<f:entry title="Rake lib directory" description="Specify the rake lib directory, by default it's './rakelib'">
+      		<f:textbox name="rake.rakeLibDir" value="${instance.rakeLibDir}"/>
+    	</f:entry>
+    	<f:entry title="Rake working directory" description="Specify the rake working directory, by default it's '.'">
+      		<f:textbox name="rake.rakeWorkingDir" value="${instance.rakeWorkingDir}"/>
+    	</f:entry>
+    	<f:entry title="Silent" description="Do not log messages or announcements to standard output">
+    		<f:checkbox name="rake.silent" checked="${instance.silent}"/>
+    	</f:entry>
+  	</f:advanced>
+</j:jelly>

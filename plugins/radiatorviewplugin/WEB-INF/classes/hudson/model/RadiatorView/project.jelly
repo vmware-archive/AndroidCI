@@ -1,0 +1,87 @@
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+	<!-- Display details about a single project in the radiator -->
+
+	<!-- show in a different style if the job is building or queued. -->
+	<j:set var="clazz" value="normal" />
+
+	<div
+		class="job ${job.status} ${clazz}" style="${jobStyle}"
+		 id="job">
+
+		<!-- Job Name Title -->
+		<ul class="menu" style="margin:0; padding:0;">
+			<li class="menu">
+				<a class="jobtitle"
+					style="color: ${job.color}; font-size: ${jobFont};"
+					>
+					${job.name}
+				</a>
+				<ul>
+					<j:forEach var="subjob" items="${job.getJobs()}">
+						<j:invokeStatic className="org.apache.commons.lang.StringUtils"
+							method="removeStart" var="subjobShortName">
+							<j:arg type="java.lang.String" value="${subjob.name}" />
+							<j:arg type="java.lang.String" value="${job.name}_" />
+						</j:invokeStatic>
+						<li>
+							<a href="${subjob.url}">${subjobShortName}</a> - ${subjob.status}
+							<j:if test="${subjob.getBuilding()}">(building now)</j:if>
+							<j:if test="${subjob.getQueued()}">(build pending)</j:if>
+						</li>
+					</j:forEach>
+				</ul>
+			</li>
+		</ul>
+
+		<j:invoke var="passJobs" on="${job}" method="getPassingJobs" />
+		<j:invoke var="failJobs" on="${job}" method="getUnclaimedJobs" />
+		<j:invoke var="claimedJobs" on="${job}" method="getClaimedBuilds" />
+		<j:if test="${!failJobs.isEmpty()}">
+			<j:if
+				test="${job.getCulprit() != null &amp;&amp; !job.getCulprit().equals(&quot;&quot;) &amp;&amp; job.getCulprit() != &quot; - &quot;}">
+				<p>Possible Culprits: ${job.culprit}</p>
+			</j:if>
+			<p>
+				Unclaimed Failures:
+				<ul>
+					<j:forEach var="subjob" items="${failJobs}">
+						<li>
+							<j:invokeStatic className="org.apache.commons.lang.StringUtils"
+								method="removeStart" var="subjobShortName">
+								<j:arg type="java.lang.String" value="${subjob.name}" />
+								<j:arg type="java.lang.String" value="${job.name}_" />
+							</j:invokeStatic>
+							<a href="${subjob.lastBuildUrl}">${subjobShortName}</a>
+							<j:if test="${subjob.getBuilding()}">(building now)</j:if>
+							<j:if test="${subjob.getQueued()}">(build pending)</j:if>
+						</li>
+					</j:forEach>
+				</ul>
+			</p>
+		</j:if>
+		<j:if test="${!claimedJobs.isEmpty()}">
+			<p>
+				Claimed Failures:
+				<ul>
+					<j:forEach var="subjob" items="${claimedJobs}">
+						<j:invokeStatic className="org.apache.commons.lang.StringUtils"
+							method="removeStart" var="subjobShortName">
+							<j:arg type="java.lang.String" value="${subjob.name}" />
+							<j:arg type="java.lang.String" value="${job.name}_" />
+						</j:invokeStatic>
+						<li>
+							<a href="${subjob.lastBuildUrl}">${subjobShortName}</a>
+							<j:if test="${subjob.getBuilding()}">(building now)</j:if>
+							<j:if test="${subjob.getQueued()}">(build pending)</j:if>
+							${subjob.getClaim()}
+						</li>
+					</j:forEach>
+				</ul>
+			</p>
+		</j:if>
+	</div>
+
+</j:jelly>

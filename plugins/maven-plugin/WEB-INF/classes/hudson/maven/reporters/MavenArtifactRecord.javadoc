@@ -1,0 +1,6 @@
+#Mon Aug 01 11:07:13 PDT 2011
+mainArtifact=\ The main artifact (like jar or war, but could be anything.)\n\n If this is a POM module, the main artifact contains the same value as {@link \#pomArtifact}.\n
+parent=\ The build to which this record belongs.\n
+pomArtifact=\ POM artifact.\n
+attachedArtifacts=\ Attached artifacts. Can be empty but never null.\n
+getAbsoluteUrl=\ Obtains the absolute URL to this build.\n\n @deprecated\n      This method shall <b>NEVER</b> be used during HTML page rendering, as it's too easy for\n      misconfiguration to break this value, with network set up like Apache reverse proxy.\n      This method is only intended for the remote API clients who cannot resolve relative references.\n

@@ -1,0 +1,37 @@
+<!--
+  Edit View Page
+-->
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt">
+  <f:entry title="${%Jobs}">
+    <j:forEach var="job" items="${app.items}">
+      <f:checkbox name="${job.name}" checked="${it.contains(job)}" />
+      ${job.name}
+      <br/>
+    </j:forEach>
+  </f:entry>
+
+  <f:optionalBlock name="useincluderegex" title="${%Use a regular expression to include jobs into the view}"
+                   checked="${it.includeRegex != null}" help="/help/view-config/includeregex.html">
+    <f:entry title="${%Regular expression}">
+      <f:textbox name="includeRegex" field="includeRegex" />
+    </f:entry>
+  </f:optionalBlock>
+
+	<f:entry title="${%Show stable builds?}" field="showStable"  help="/plugin/radiatorviewplugin/help/showstable.html">
+		<f:checkbox name="showStable" checked="${it.showStable}" value="true" field="showStable" />
+	</f:entry>
+	
+	<f:entry title="${%Show stable detail?}" field="showStableDetail" help="/plugin/radiatorviewplugin/help/showstabledetail.html">
+		<f:checkbox name="showStableDetail" checked="${it.showStableDetail}" value="true" field="showStableDetail" />
+	</f:entry>
+	
+	<f:entry title="${%Use Dark Background?}" field="highVis" help="/plugin/radiatorviewplugin/help/highVis.html">
+		<f:checkbox name="highVis" checked="${it.highVis}" value="true" field="highVis" />
+	</f:entry>
+	
+	
+	<f:entry title="${%Show as Projects?}" field="groupByPrefix" help="/plugin/radiatorviewplugin/help/groupByPrefix.html">
+		<f:checkbox name="groupByPrefix" checked="${it.groupByPrefix}" value="true" field="groupByPrefix" />
+	</f:entry>
+	
+</j:jelly>

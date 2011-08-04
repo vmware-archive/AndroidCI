@@ -1,0 +1,8 @@
+hudson.plugins.git.GitChangeSet
+hudson.plugins.git.GitChangeSet.Path
+hudson.plugins.git.GitObject
+hudson.plugins.git.GitSCM
+hudson.plugins.git.Revision
+hudson.plugins.git.opt.PreBuildMergeOptions
+hudson.plugins.git.util.Build
+hudson.plugins.git.util.BuildData

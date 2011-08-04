@@ -1,0 +1,9 @@
+hudson.maven.MavenBuild
+hudson.maven.MavenModule
+hudson.maven.MavenModuleSet
+hudson.maven.MavenModuleSetBuild
+hudson.maven.reporters.MavenAbstractArtifactRecord
+hudson.maven.reporters.MavenAbstractArtifactRecord.Record
+hudson.maven.reporters.MavenAggregatedArtifactRecord
+hudson.maven.reporters.MavenArtifact
+hudson.maven.reporters.MavenArtifactRecord

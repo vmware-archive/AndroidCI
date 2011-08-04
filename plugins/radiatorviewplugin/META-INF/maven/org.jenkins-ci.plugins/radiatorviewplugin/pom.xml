@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jenkins-ci.plugins</groupId>
+		<artifactId>plugin</artifactId>
+		<version>1.400</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>radiatorviewplugin</artifactId>
+	<packaging>hpi</packaging>
+	<name>Radiator View Plugin</name>
+	<version>1.13</version>
+	<url>http://wiki.jenkins-ci.org/display/JENKINS/Radiator+View+Plugin</url>
+	<description>Adds a new high visibility view of project status.</description>
+	<!--
+		We need the following because the artifactId=radiatorviewplugin but
+		directoryName=radiatorview, and Maven infers the wrong value if I
+		don't specify it explicitly.
+	--> 
+	<scm>
+		<connection>scm:svn:https://guest@svn.jenkins-ci.org/tags/radiatorviewplugin-1.13</connection>
+		<developerConnection>scm:svn:https://svn.jenkins-ci.org/tags/radiatorviewplugin-1.13</developerConnection>
+		<url>https://svn.jenkins-ci.org/tags/radiatorviewplugin-1.13</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>howama</id>
+			<name>Mark Howard</name>
+			<email>mh@tildemh.com</email>
+		</developer>
+	</developers>
+
+	<repositories>
+		<repository>
+			<id>maven.jenkins-ci.org</id>
+			<url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<!--  maven3 doesn't support anymore id local -->
+		<snapshotRepository>
+			<!-- prevent accidental deployment of SNAPSHOTS to repository -->
+			<id>local.repository</id>
+			<url>file:.</url>
+		</snapshotRepository>
+	    <repository>
+	      <id>maven.jenkins-ci.org</id>
+	      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+	    </repository>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.hudson.plugins</groupId>
+			<artifactId>claim</artifactId>
+			<version>1.7</version>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+</project>

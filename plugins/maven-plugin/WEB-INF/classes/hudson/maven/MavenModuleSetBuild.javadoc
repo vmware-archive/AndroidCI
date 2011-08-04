@@ -1,0 +1,3 @@
+#Mon Aug 01 11:07:13 PDT 2011
+getMavenVersionUsed=\ Gets the version of Maven used for build.\n\n @return\n      null if this build is done by earlier version of Jenkins that didn't record this information\n      (this means the build was done by Maven2.x)\n
+getMavenArtifacts=\ Information about artifacts produced by Maven.\n

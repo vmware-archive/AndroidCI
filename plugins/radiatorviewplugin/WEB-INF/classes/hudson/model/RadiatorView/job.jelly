@@ -1,0 +1,99 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+	<!--  Display details about a single job in the radiator -->
+
+	<!-- show in a different style if the job is building or queued.  -->
+	<j:set var="clazz" value="normal" />
+	<j:if test="${job.building || job.queued}">
+		<j:set var="clazz" value="building" />
+	</j:if>
+	<div style="${jobStyle}  background-color:${job.backgroundColor};"
+		class="job ${job.getStatus()} ${clazz}" tooltip="${job.name}" id="job">
+
+		<!--  Job Name Title -->
+		<p>
+			<a style="color: ${job.color}; font-size: ${jobFont}; font-weight:bold;"
+				href="${job.lastBuildUrl}">${job.name}</a>
+		</p>
+		<!--  Build health icon -->
+		<!--  
+		I personally find that this just clutters the display (there's already too much on there). Feel free to add as a (non-default) config option though!
+		<img src="${rootURL}/images/${iconSize}/${job.job.buildHealth.iconUrl}"
+			alt="${job.job.buildHealth.description}" style="float:right" />
+			-->
+		<!-- Job Claim Information -->
+		<j:if test="${job.isClaimed()}">
+			<p>${job.getClaim()}</p>
+		</j:if>
+		<!-- Details of any test failures -->
+		<p>
+			<j:if test="${job.broken == false}">
+				<j:if test="${job.failCount == 1}">
+					<font
+						style="text-align=center; color: #FF0000; font-size: ${failFont}; font-weight:bold;">1/${job.testCount} test failure</font>
+				</j:if>
+				<j:if test="${ job.failCount > 1}">
+					<font
+						style="text-align=center; color: #FF0000; font-size: ${failFont}; font-weight:bold;">${job.failCount}/${job.testCount} test failures</font>
+				</j:if>
+				<j:if test="${job.diff != ''}">
+					(
+					<font color="${job.diffColor}">${job.diff}</font>
+					tests
+					)
+				</j:if>
+			</j:if>
+		</p>
+		<!--  Details of current Runs -->
+		<j:forEach var="run" items="${job.buildsInProgress}">
+			<p>Now building: ${run.displayName}, ${run.executor.progress}% -
+				${run.executor.estimatedRemainingTime} left</p>
+		</j:forEach>
+		<j:if test="${job.queued == true}">
+			<p>Build pending (#${job.queueNumber} in queue)</p>
+		</j:if>
+		<j:if test="${!job.getStable()}">
+			<j:if test="${job.getCulprit() != &quot; - &quot;}">
+				<p>Possible culprit: ${job.culprit}</p>
+			</j:if>
+			<j:if test="${job.getLastStableBuild() != null}">
+				<p>
+					Last Stable Build:
+					<strong>${job.getLastStableBuild()}</strong>
+				</p>
+			</j:if>
+		</j:if>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</div>
+
+</j:jelly>

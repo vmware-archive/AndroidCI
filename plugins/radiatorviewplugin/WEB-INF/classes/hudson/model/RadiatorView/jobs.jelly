@@ -1,0 +1,84 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+
+	<j:invoke var="passJobs" on="${contents}" method="getPassingJobs" />
+	<j:invoke var="failJobs" on="${contents}" method="getFailingJobs" />
+	<j:invoke var="failJobRows" on="${from}" method="toRows">
+		<j:arg type="java.util.Collection" value="${failJobs}" />
+		<j:arg type="java.lang.Boolean" value="true" />
+	</j:invoke>
+	<j:invoke var="passJobRows" on="${from}" method="toRows">
+		<j:arg type="java.util.Collection" value="${passJobs}" />
+		<j:arg type="java.lang.Boolean" value="false" />
+	</j:invoke>
+
+	<!--  how much space to allocate for failed and passing jobs. -->
+	<j:set var="failJobsHeight" value="100" />
+	<j:set var="passJobsHeight" value="0" />
+	<j:if test="${from.getShowStable() &amp;&amp; from.getShowStableDetail()}">
+		<j:set var="failJobsHeight" value="66" />
+		<j:set var="passJobsHeight" value="34" />
+	</j:if>
+	<j:if test="${from.getShowStable() &amp;&amp; !from.getShowStableDetail()}">
+		<j:set var="failJobsHeight" value="85" />
+		<j:set var="passJobsHeight" value="15" />
+	</j:if>
+	<j:if test="${failJobs.isEmpty()}">
+		<!--  just show passing jobs... -->
+		<j:set var="failJobsHeight" value="0" />
+		<j:set var="passJobsHeight" value="100" />
+	</j:if>
+
+
+	<!-- render the failing jobs... -->
+	<j:if test="${!failJobs.isEmpty()}">
+		<j:set var="jobFont" value="xx-large" />
+		<j:set var="failFont" value="xx-large" />
+		<j:set var="infoFont" value="medium" />
+		<j:set var="buildFont" value="medium" />
+		<j:set var="iconSize" value="48x48" />
+
+
+		<j:set var="height" value="${(failJobsHeight / failJobRows.size())}" />
+		<j:set var="top" value="0" />
+		<j:set var="showDetail" value="true" />
+		<j:forEach var="row" items="${failJobRows}">
+			<j:set var="width" value="${(100 / row.size())}" />
+			<j:set var="left" value="0" />
+			<j:forEach var="job" items="${row}">
+				<j:set var="jobStyle"
+					value="left: ${left}%; top:${top}%; width:${width-2}%; height:${height-2}%; margin:1%; " />
+				<st:include page="job.jelly" />
+				<j:set var="left" value="${left + width}" />
+			</j:forEach>
+			<j:set var="top" value="${top + height}" />
+		</j:forEach>
+	</j:if>
+
+	<!--
+		optionally show stable jobs if requested or there are none failing.
+	-->
+	<j:if test="${from.getShowStable() || failJobs.isEmpty()}">
+		<j:set var="jobFont" value="x-small" />
+		<j:set var="infoFont" value="xx-small" />
+		<j:set var="buildFont" value="xx-small" />
+		<j:set var="iconSize" value="16x16" />
+
+		<j:set var="height" value="${(passJobsHeight / passJobRows.size())}" />
+		<j:set var="top" value="${failJobsHeight}" />
+		<j:forEach var="row" items="${passJobRows}">
+			<j:set var="left" value="0" />
+			<j:forEach var="job" items="${row}">
+				<j:set var="width" value="${(100 / row.size())}" />
+				<j:set var="jobStyle"
+					value="left: ${left}%; top:${top}%; width:${width-0.4}%; height:${height-0.4}%; margin: 0.2%; " />
+				<j:set var="showDetail" value="${from.getShowStableDetail()}" />
+				<st:include page="job.jelly" />
+				<j:set var="left" value="${left + width}" />
+			</j:forEach>
+			<j:set var="top" value="${top + height}" />
+		</j:forEach>
+	</j:if>
+
+</j:jelly>

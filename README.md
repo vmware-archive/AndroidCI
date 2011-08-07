@@ -10,32 +10,16 @@ things as you go.
 - You are working on a Mac
 - Your android SDK is in ~/android-sdk-mac_x86, or you are going to put it there, 
 or create a symlink, etc.
-- AndroidCi ships with one preconfigured job: AndroidIntelliJStarter, which runs https://github.com/pivotal/AndroidIntellijStarter
 
-## Android
-Download the latest Mac SDK: http://developer.android.com/sdk/index.html
+##AndroidCi and AndroidIntelliJStarter
 
-Unzip the archive and move the android-sdk-mac_x86 dir to ~/android-sdk-mac_x86. 
-*This project assumes that android lives in ~/android-sdk-mac_x86*. You will need to 
-fix paths in several places if you choose a different location.
+AndroidCi ships with one preconfigured job: AndroidIntelliJStarter, which runs 
+https://github.com/pivotal/androidintellijstarter. If your project started as a clone or fork of 
+AndroidIntelliJStarter then Android CI will be very easy for you to set up. 
 
-Add the android tools to the PATH. 
-
-    # Note: change .bash_pivotal to .bash_profile or .bashrc if needed
-    echo "export PATH='$PATH:$HOME/android-sdk-mac_x86/tools'" >> $HOME/.bash_pivotal
-
-Open a new Terminal window and run `android`:
- 
-    # in a new Terminal window:
-    android 
-
-Use the "Android SDK and AVD Manager" to download all of the SDKs you think you need.
-If you need Google Maps then install the Google APIs under 
-Available packages => Third party Add-ons.
-
-Note: This project assumes you have SDK Platform Android 2.1 installed. You can change this in 
-`default.properties`
-
+## Setting up Android SDKs.
+Please see https://github.com/pivotal/androidintellijstarter for detailed instructions on setting up
+Android SDKs.
 
 ## Bootstrap 
 
@@ -44,7 +28,7 @@ Note: This project assumes you have SDK Platform Android 2.1 installed. You can 
     ln -s $PWD $HOME/.jenkins
 
 
-## Jenkins
+## Install and run Jenkins
 Download the latest-and-greatest Jenkins: http://jenkins-ci.org/.  
 
 Get the java one, not one of the native packages. 
@@ -55,5 +39,13 @@ launch jenkins:
 
     java -jar jenkins.war
 
-******* Turn on build reports when ant is working********
-add build release stuff
+## Configuring for your YourProject
+Assuming you have a project named YourProject, which is based on AndroidIntelliJStarter:
+
+- Visit Jenkins in your browser (http://localhost:8080 by default)
+- Select AndroidIntelliJStarter
+- Configure
+- Update Project Name to YourProject
+- Change GitHub Project
+- Change Source Code Management => Git => Repositories
+- Have a look at the Build steps to get a feel for what it does

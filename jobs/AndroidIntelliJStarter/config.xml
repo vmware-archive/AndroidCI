@@ -14,7 +14,7 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name>origin</name>
         <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-        <url>/Users/pivotal/workspace/AndroidIntelliJStarter</url>
+        <url>git://github.com/pivotal/AndroidIntelliJStarter.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

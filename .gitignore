@@ -28,6 +28,7 @@ plugins/cvs*
 plugins/maven*
 plugins/ssh-slaves*
 plugins/subversion*
+plugins/ruby.hpi.disabled
 queue.xml
 queue.xml.bak
 secret.key

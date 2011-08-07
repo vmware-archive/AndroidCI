@@ -41,7 +41,7 @@ Note: This project assumes you have SDK Platform Android 2.1 installed. You can 
 
     git@pivotal:pivotal/AndroidCi.git
     cd AndroidCi
-    ln -s $PWD ~/.jenkins
+    ln -s $PWD $HOME/.jenkins
 
 
 ## Jenkins

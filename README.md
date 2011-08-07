@@ -10,7 +10,7 @@ things as you go.
 - You are working on a Mac
 - Your android SDK is in ~/android-sdk-mac_x86, or you are going to put it there, 
 or create a symlink, etc.
-- A 
+- AndroidCi ships with one preconfigured job: AndroidIntelliJStarter, which runs https://github.com/pivotal/AndroidIntellijStarter
 
 ## Android
 Download the latest Mac SDK: http://developer.android.com/sdk/index.html

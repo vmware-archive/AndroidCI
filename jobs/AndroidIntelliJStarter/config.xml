@@ -3,7 +3,11 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty>
+      <projectUrl>https://github.com/pivotal/AndroidIntelliJStarter/</projectUrl>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -48,8 +52,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>export PATH=$PATH:$HOME/android-sdk-mac_x86/tools
-git submodule update --init
-android update project -p .</command>
+#ant clean test
+ant clean test</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export PATH=$PATH:$HOME/android-sdk-mac_x86/tools
@@ -58,10 +62,23 @@ android update project -p .</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export PATH=$PATH:$HOME/android-sdk-mac_x86/tools
-#ant clean test
-echo &quot;hello world!&quot;</command>
+ant clean test</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>export PATH=$PATH:$HOME/android-sdk-mac_x86/tools
+ant debug</command>
     </hudson.tasks.Shell>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>ant_build/**.apk</artifacts>
+      <latestOnly>false</latestOnly>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>ant_build/out/reports/tests/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+  </publishers>
   <buildWrappers/>
 </project>

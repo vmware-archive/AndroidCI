@@ -1,7 +1,18 @@
 .DS_Store
 .owner
+hudson.maven.MavenModuleSet.xml
 hudson.model.UpdateCenter.xml
+hudson.plugins.git.GitSCM.xml
 hudson.plugins.git.GitTool.xml
+hudson.plugins.rake.Rake.xml
+hudson.scm.CVSSCM.xml
+hudson.scm.SubversionSCM.xml
+hudson.tasks.Ant.xml
+hudson.tasks.Mailer.xml
+hudson.tasks.Maven.xml
+hudson.tasks.Shell.xml
+hudson.triggers.SCMTrigger.xml
+
 identity.key
 
 jobs/AndroidIntelliJStarter/builds/
@@ -14,6 +25,9 @@ jobs/AndroidIntelliJStarter/workspace/
 nodeMonitors.xml
 
 plugins/cvs*
+plugins/maven*
+plugins/ssh-slaves*
+plugins/subversion*
 queue.xml
 queue.xml.bak
 secret.key
@@ -21,3 +35,8 @@ updates/
 userContent/
 war/
 
+Fingerprint\ cleanup.log
+Workspace\ clean-up.log
+com.cloudbees.jenkins.GitHubPushTrigger.xml
+config.xml
+users/

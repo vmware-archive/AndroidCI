@@ -22,13 +22,13 @@ Please see https://github.com/pivotal/AndroidIntelliJStarter for detailed instru
 Android SDKs.
 
 ## Install AndroidCI 
-Android CI is intended to be Jenkins' configuration directory, ~/.jenkins by default. 
+Android CI is intended to be Jenkins' configuration directory, `~/.jenkins` by default. 
 
 1. Stop Jenkins if it is running
 2. Move Jenkins' configuration directory out of the way if there is one.
 3. Clone AndroidCI (or your fork) and set it as Jenkins' configuration directory
 
-         git@pivotal:pivotal/AndroidCI.git
+         git://github.com/pivotal/AndroidCI.git
          cd AndroidCI
          ln -s $PWD $HOME/.jenkins
 
@@ -40,7 +40,7 @@ launch Jenkins:
 
     java -jar jenkins.war
 
-Jenkins will start using the ~/.jenkins directory set up above.
+Jenkins will start using the `~/.jenkins` directory set up above.
 
 ## Configuring for Your Project
 Assuming you have a project named YourProject, which is based on AndroidIntelliJStarter:

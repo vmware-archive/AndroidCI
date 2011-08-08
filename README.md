@@ -12,13 +12,13 @@ things as you go.
 or create a symlink, etc.
 
 ##AndroidCI and AndroidIntelliJStarter
-Android CI ships with one preconfigured job: AndroidIntelliJStarter, which runs 
-https://github.com/pivotal/androidintellijstarter. If your project started as a clone or fork of 
+Android CI ships with one preconfigured job: AndroidIntelliJStarter, which runs tests and builds .apks 
+for https://github.com/pivotal/AndroidIntelliJStarter. If your project started as a clone or fork of 
 AndroidIntelliJStarter then Android CI's configuration should work well for you with only 
 a few simple changes.
 
 ## Setting up Android SDKs
-Please see https://github.com/pivotal/androidintellijstarter for detailed instructions on setting up
+Please see https://github.com/pivotal/AndroidIntelliJStarter for detailed instructions on setting up
 Android SDKs.
 
 ## Install AndroidCI 
@@ -28,9 +28,9 @@ Android CI is intended to be Jenkins' configuration directory, ~/.jenkins by def
 2. Move Jenkins' configuration directory out of the way if there is one.
 3. Clone AndroidCI (or your fork) and set it as Jenkins' configuration directory
 
-    git@pivotal:pivotal/AndroidCI.git
-    cd AndroidCI
-    ln -s $PWD $HOME/.jenkins
+         git@pivotal:pivotal/AndroidCI.git
+         cd AndroidCI
+         ln -s $PWD $HOME/.jenkins
 
 ## Install and run Jenkins
 Download the latest-and-greatest Jenkins: http://jenkins-ci.org/. Get the java one, not one of the 

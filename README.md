@@ -11,41 +11,55 @@ things as you go.
 - Your android SDK is in ~/android-sdk-mac_x86, or you are going to put it there, 
 or create a symlink, etc.
 
-##AndroidCi and AndroidIntelliJStarter
-
-AndroidCi ships with one preconfigured job: AndroidIntelliJStarter, which runs 
+##AndroidCI and AndroidIntelliJStarter
+Android CI ships with one preconfigured job: AndroidIntelliJStarter, which runs 
 https://github.com/pivotal/androidintellijstarter. If your project started as a clone or fork of 
-AndroidIntelliJStarter then Android CI will be very easy for you to set up. 
+AndroidIntelliJStarter then Android CI's configuration should work well for you with only 
+a few simple changes.
 
-## Setting up Android SDKs.
+## Setting up Android SDKs
 Please see https://github.com/pivotal/androidintellijstarter for detailed instructions on setting up
 Android SDKs.
 
-## Bootstrap 
+## Install AndroidCI 
+Android CI is intended to be Jenkins' configuration directory, ~/.jenkins by default. 
 
-    git@pivotal:pivotal/AndroidCi.git
-    cd AndroidCi
+1. Stop Jenkins if it is running
+2. Move Jenkins' configuration directory out of the way if there is one.
+3. Clone AndroidCI (or your fork) and set it as Jenkins' configuration directory
+
+    git@pivotal:pivotal/AndroidCI.git
+    cd AndroidCI
     ln -s $PWD $HOME/.jenkins
 
-
 ## Install and run Jenkins
-Download the latest-and-greatest Jenkins: http://jenkins-ci.org/.  
+Download the latest-and-greatest Jenkins: http://jenkins-ci.org/. Get the java one, not one of the 
+native packages. 
 
-Get the java one, not one of the native packages. 
-
-Put it on your CI box.
-
-launch jenkins:
+launch Jenkins:
 
     java -jar jenkins.war
 
-## Configuring for your YourProject
+Jenkins will start using the ~/.jenkins directory set up above.
+
+## Configuring for Your Project
 Assuming you have a project named YourProject, which is based on AndroidIntelliJStarter:
 
 - Visit Jenkins in your browser (http://localhost:8080 by default)
 - Select AndroidIntelliJStarter
-- Configure
+- Select Configure
 - Update Project Name to YourProject
-- Change GitHub Project
-- Change Source Code Management => Git => Repositories
-- Have a look at the Build steps to get a feel for what it does
+- Update the GitHub Project URL
+- Update Source Code Management => Git => Repositories with your project's URL
+- Look at the Build steps to get a feel for what it does
+
+## Preinstalled Plugins
+We have installed the following plugins in addition to the defaults:
+
+- Git Plugin
+- GitHub plugin
+- Green Balls
+- Radiator View Plugin
+- Jenkins Rake plugin
+- Hudson Ruby Plugin
+
